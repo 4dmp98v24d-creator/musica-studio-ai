@@ -1,0 +1,20 @@
+services:
+  studio:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      MAX_UPLOAD_MB: 50
+      MAX_DURATION_SECONDS: 600
+      MAX_STORED_JOBS: 10
+      RETENTION_HOURS: 24
+      DEMUCS_DEVICE: cpu
+    volumes:
+      - audio:/data
+      - models:/models
+    mem_limit: 8g
+    cpus: 2
+volumes:
+  audio:
+  models:
